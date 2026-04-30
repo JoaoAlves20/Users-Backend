@@ -4,7 +4,8 @@
   "description": "CRUD de usuários com sistema de login, autenticação JWT, paginação, filter, dentre outras coisas, e essa API será integrado com o Supabase",
   "main": "index.js",
   "scripts": {
-    "dev": "node --watch src/index.ts"
+    "dev": "node --watch src/index.ts",
+    "test": "yarn mocha test/service.test.ts"
   },
   "repository": {
     "type": "git",
