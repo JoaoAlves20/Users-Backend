@@ -3,7 +3,7 @@ import helmet from 'helmet';
 
 import { config } from './config/server.config.ts';
 import { router } from './routes/main.route.ts';
-import { notFoundRequest, errorHandler } from './routes/errorHandler.ts';
+import { notFoundRequest, errorHandler } from './errors/errorHandler.ts';
 
 const server = express();
 

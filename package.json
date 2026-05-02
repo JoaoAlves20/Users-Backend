@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/JoaoAlves20/Users-API#readme",
   "devDependencies": {
+    "@types/bcryptjs": "^3.0.0",
     "@types/express": "^5.0.6",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/mocha": "^10.0.10",
     "@types/node": "^25.6.0",
     "mocha": "^11.7.5",
@@ -28,9 +30,11 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.105.1",
+    "bcryptjs": "^3.0.3",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "helmet": "^8.1.0",
+    "jsonwebtoken": "^9.0.3",
     "zod": "^4.4.0"
   }
 }

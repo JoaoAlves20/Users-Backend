@@ -1,6 +1,6 @@
 import { supabase } from "../schema/supabase.ts";
 
-import type { user_create, user_update } from '../types/user.types.ts';
+import type { user_create, user_update } from '../dtos/user.types.ts';
 
 class UserService {
     async findAll() {
@@ -16,6 +16,17 @@ class UserService {
 
     async findById(id: string) {
         const { data, error } = await supabase.from('users').select().eq('id', id);
+
+        if (error) {
+            console.error('DEU RUIM', error);
+            return null;
+        }
+
+        return data;
+    }
+
+    async findByEmail(email: string) {
+        const { data, error } = await supabase.from('users').select().eq('email', email);
 
         if (error) {
             console.error('DEU RUIM', error);

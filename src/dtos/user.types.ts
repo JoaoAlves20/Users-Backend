@@ -13,3 +13,9 @@ export type user_update = {
     created_at?: string,
     role?: string
 }
+
+export type TokenPayLoad = {
+    id: string,
+    iat: number,
+    exp: number
+}
