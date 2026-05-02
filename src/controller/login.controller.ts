@@ -22,7 +22,11 @@ class LoginController {
         }
 
         const token = jwt.sign(
-            { id: user[0].id, email: user[0].email },
+            {
+                id: user[0].id,
+                email: user[0].email,
+                role: user[0].role
+            },
             config.jwt_secret,
             { expiresIn: '1d' }
         )

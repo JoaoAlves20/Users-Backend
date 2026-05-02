@@ -17,5 +17,6 @@ export type user_update = {
 export type TokenPayLoad = {
     id: string,
     iat: number,
-    exp: number
+    exp: number,
+    role: "ADMIN" | "USER"
 }

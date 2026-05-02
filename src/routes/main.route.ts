@@ -1,7 +1,7 @@
 import { Router } from "express";
 
 import userRouter from './users.route.ts';
-import { authMiddleware } from "../middleware/auth.ts";
+import { authMiddleware } from "../middleware/authJWT.ts";
 import LoginController from '../controller/login.controller.ts'
 
 export const router = Router();

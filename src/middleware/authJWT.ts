@@ -29,11 +29,12 @@ export const authMiddleware: RequestHandler = (request, response, next) => {
 
     try {
         const data = jwt.verify(token, config.jwt_secret);
-        const { id } = data as TokenPayLoad;
+        const { id, role } = data as TokenPayLoad;
 
         request.userId = id;
+        request.userRole = role;
 
-        return next();
+        next();
     } catch (error) {
         console.error('DEU RUIM no TOKEN', error);
         return response.status(401).json({ error: 'Token inválido ou expirado' });

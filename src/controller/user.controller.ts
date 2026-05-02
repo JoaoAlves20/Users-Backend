@@ -3,18 +3,30 @@ import type { Request, Response } from 'express';
 import UserService from '../service/users.service.ts';
 
 class UserController {
-    async findAll(_: Request, response: Response) {
+    async findAll(request: Request, response: Response) {
+        const { userRole } = request;
+        
         const data = await UserService.findAll();
 
         if (!data) {
             return response.status(404).json({ error: 'Users not found' });
         }
 
-        response.status(200).json(data);
+        if (userRole === "ADMIN") {
+            return response.status(200).json(data);
+        }
+
+        const filterData = data?.map(user => ({
+            username: user.username,
+            email: user.email
+        }))
+
+        return response.status(200).json(filterData);
     }
 
     async findById(request: Request, response: Response) {
         const { id } = request.params;
+        const { userRole } = request;
         
         const data = await UserService.findById(id as string);
 
@@ -22,7 +34,16 @@ class UserController {
             return response.status(404).json({ error: 'User not found' });
         }
 
-        response.status(200).json(data);
+        if (userRole === "ADMIN") {
+            return response.status(200).json(data);
+        }
+
+        const filterData = data?.map(user => ({
+            username: user.username,
+            email: user.email
+        }))
+
+        return response.status(200).json(filterData);
     }
 
     async create(request: Request, response: Response) {
