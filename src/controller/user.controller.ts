@@ -21,7 +21,7 @@ class UserController {
             email: user.email
         }))
 
-        return response.status(200).json(filterData);
+        response.status(200).json(filterData);
     }
 
     async findById(request: Request, response: Response) {
@@ -89,6 +89,32 @@ class UserController {
         }
 
         response.status(200).json({ success: 'deleted user' });
+    }
+
+    async searchByName(request: Request, response: Response) {
+        const { username } = request.query;
+        const { userRole } = request;
+
+        if (!username) {
+            return response.status(400).json({ error: 'Name is required' });
+        }
+
+        const data = await UserService.search(username as string);
+
+        if (!data) {
+            return response.status(404).json({ error: 'User not found' });
+        }
+
+        if (userRole === "ADMIN") {
+            return response.status(200).json(data);
+        }
+
+        const filterData = data?.map(user => ({
+            username: user.username,
+            email: user.email
+        }))
+
+        response.status(200).json(filterData);
     }
 }
 

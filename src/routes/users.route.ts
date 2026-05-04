@@ -7,6 +7,7 @@ const router = Router();
 
 // Rotas de usuários
 router.get('/', UserController.findAll);
+router.get('/search', UserController.searchByName);
 router.get('/:id', UserController.findById);
 router.post('/', authorize(['ADMIN']), UserController.create);
 router.put('/:id', authorize(['ADMIN']), UserController.update);

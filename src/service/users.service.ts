@@ -7,7 +7,7 @@ class UserService {
         const { data, error } = await supabase.from('users').select();
 
         if (error) {
-            console.error('DEU RUIM', error);
+            console.error('DEU RUIM no FindAll', error);
             return null;
         }
 
@@ -18,7 +18,18 @@ class UserService {
         const { data, error } = await supabase.from('users').select().eq('id', id);
 
         if (error) {
-            console.error('DEU RUIM', error);
+            console.error('DEU RUIM no FindById', error);
+            return null;
+        }
+
+        return data;
+    }
+
+    async search(username: string) {
+        const { data, error } = await supabase.from('users').select().eq('username', username);
+
+        if (error) {
+            console.error('DEU RUIM no Search', error);
             return null;
         }
 
@@ -29,7 +40,7 @@ class UserService {
         const { data, error } = await supabase.from('users').select().eq('email', email);
 
         if (error) {
-            console.error('DEU RUIM', error);
+            console.error('DEU RUIM no FindByEmail', error);
             return null;
         }
 
@@ -40,7 +51,7 @@ class UserService {
         const { error, success } = await supabase.from('users').insert(user);
 
         if (error) {
-            console.error('DEU RUIM', error);
+            console.error('DEU RUIM no create', error);
             return null;
         }
 
@@ -53,7 +64,7 @@ class UserService {
         } = await supabase.from('users').update(user).eq('id', id);
 
         if (error) {
-            console.error('DEU RUIM', error);
+            console.error('DEU RUIM no update', error);
             return null;
         }
 
@@ -64,7 +75,7 @@ class UserService {
         const { success, error } = await supabase.from('users').delete().eq('id', id);
 
         if (error) {
-            console.error('DEU RUIM', error);
+            console.error('DEU RUIM no delete', error);
             return null;
         }
 
