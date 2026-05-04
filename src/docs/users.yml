@@ -113,7 +113,40 @@ paths:
         200:
           description: Usuário deletado
         400:
-          description: Erro ao deletar
+          description: Erro ao 
+
+  /users/search:
+    get:
+      summary: Busca usuários pelo username
+      description: Retorna usuários filtrados pelo nome. ADMIN vê todos os dados; usuário comum vê apenas username e email.
+      tags: [Users]
+      security:
+        - bearerAuth: []
+      parameters:
+        - in: query
+          name: username
+          required: true
+          schema:
+            type: string
+          description: Nome do usuário para busca
+      responses:
+        200:
+          description: Usuários encontrados
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    username:
+                      type: string
+                    email:
+                      type: string
+        400:
+          description: Nome não informado
+        404:
+          description: Usuário não encontrado
 
 components:
   schemas:
